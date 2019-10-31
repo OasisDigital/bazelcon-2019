@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>SSE FX example</title>
+  <style>body { font-family: sans-serif; }</style>
+</head>
+
+<body>
+  <h2>FX Data Stream</h2>
+  <ul id="fx-quotes"></ul>
+
+  <!-- Polyfill for IE and old Android browsers -->
+  <script src="eventsource.min.js"></script>
+
+  <script>
+    // Close to the minimum code to show SSE in action:
+    'use strict';
+    var containerElem = document.getElementById('fx-quotes');
+
+    var fxSource = new window.EventSource('/lowfreq');
+    fxSource.onmessage = function (e) {
+      var newListItem = document.createElement('li');
+      newListItem.innerHTML = e.data.toString();
+      containerElem.insertBefore(newListItem, containerElem.firstChild);
+    };
+</script>
+</body>
+
+</html>

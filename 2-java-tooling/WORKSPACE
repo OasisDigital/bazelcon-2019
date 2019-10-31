@@ -1,0 +1,57 @@
+workspace(name = "up_and_running")
+
+load(
+    "@bazel_tools//tools/build_defs/repo:http.bzl",
+    "http_archive",
+    "http_jar",
+)
+
+# "New" Java support
+
+http_archive(
+    name = "rules_java",
+    sha256 = "220b87d8cfabd22d1c6d8e3cdb4249abd4c93dcc152e0667db061fb1b957ee68",
+    url = "https://github.com/bazelbuild/rules_java/releases/download/0.1.1/rules_java-0.1.1.tar.gz",
+)
+
+# Merely loading the rule won't transitively execute code inside them to load
+# their dependencies. Instead, as the consumer we have to request the rest of the
+# setup.
+
+load("@rules_java//java:repositories.bzl", "rules_java_dependencies", "rules_java_toolchains")
+
+rules_java_dependencies()
+
+rules_java_toolchains()
+
+# Download JDKs; as I understand all will be downloaded, then only the one
+# suitable for the platform will be used.
+
+http_archive(
+    name = "jdk8_linux",
+    build_file = "@local_jdk//:BUILD.bazel",
+    sha256 = "568e7578f1b20b1e62a8ed2c374bad4eb0e75d221323ccfa6ba8d7bc56cf33cf",
+    strip_prefix = "zulu8.38.0.13-ca-jdk8.0.212-linux_x64",
+    urls = [
+        "https://cdn.azul.com/zulu/bin/zulu8.38.0.13-ca-jdk8.0.212-linux_x64.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "jdk8_macos",
+    build_file = "@local_jdk//:BUILD.bazel",
+    sha256 = "64538f3eed34a298cc48168e89326fd323a55d801a3e6b2c3cc948effe124250",
+    strip_prefix = "zulu8.38.0.13-ca-jdk8.0.212-macosx_x64",
+    urls = [
+        "https://cdn.azul.com/zulu/bin/zulu8.38.0.13-ca-jdk8.0.212-macosx_x64.tar.gz",
+    ],
+)
+
+# Retrieve a dependency JAR in the simplest available way. We'll see
+# more complex mechanisms later.
+
+http_jar(
+    name = "junit",
+    sha256 = "59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a",
+    url = "https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12.jar",
+)

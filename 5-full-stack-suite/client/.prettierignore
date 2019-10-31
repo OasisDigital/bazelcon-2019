@@ -1,0 +1,7 @@
+.vscode
+tsconfig.*
+dist
+angular.json
+package.json
+tslint*.json
+polyfills.ts

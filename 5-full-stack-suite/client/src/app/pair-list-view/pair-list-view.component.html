@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Symbol pairs</div>
+  <div class="panel-body">
+    <table class="table table-condensed">
+      <tr>
+        <th>Pair</th>
+        <th>Bid</th>
+      </tr>
+      <tr *ngFor="let entry of list">
+        <td>{{entry.symbol}}</td>
+        <td> {{entry.bid}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

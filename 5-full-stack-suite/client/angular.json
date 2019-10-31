@@ -1,0 +1,70 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "client": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/client",
+      "sourceRoot": "projects/client/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/bazel:build",
+          "options": {
+            "targetLabel": "//projects/client/src:prodapp",
+            "bazelCommand": "build"
+          },
+          "configurations": {
+            "production": {
+              "targetLabel": "//projects/client/src:prodapp"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular/bazel:build",
+          "options": {
+            "targetLabel": "//projects/client/src:devserver",
+            "bazelCommand": "run",
+            "watch": true
+          },
+          "configurations": {
+            "production": {
+              "targetLabel": "//projects/client/src:prodserver"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "client:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/bazel:build",
+          "options": {
+            "bazelCommand": "test",
+            "targetLabel": "//projects/client/src:test"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/client/tsconfig.app.json",
+              "projects/client/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "client"
+}

@@ -1,0 +1,18 @@
+steps:
+  - commands:
+      - cd 1-up-and-running
+      - ./exercise.sh
+      - cd ../2-java-tooling
+      - ./exercise.sh
+      - cd ../3-java-dependencies
+      - ./exercise.sh
+      - cd ../4-multi-language
+      - ./exercise.sh
+      - cd ../5-full-stack-suite
+      - ./exercise.sh
+    label: "One"
+    plugins:
+      - docker#v3.2.0:
+          image: "l.gcr.io/google/bazel:latest"
+          entrypoint: ""
+          shell: ["/bin/bash", "-e", "-c"]

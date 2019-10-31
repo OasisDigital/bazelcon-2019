@@ -1,0 +1,39 @@
+{
+  "name": "full-stack-suite",
+  "version": "0.0.0",
+  "scripts": {},
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~8.2.13",
+    "@angular/common": "~8.2.13",
+    "@angular/compiler": "~8.2.13",
+    "@angular/core": "~8.2.13",
+    "@angular/forms": "~8.2.13",
+    "@angular/platform-browser": "~8.2.13",
+    "@angular/platform-browser-dynamic": "~8.2.13",
+    "@angular/router": "~8.2.13",
+    "rxjs": "^6.4.0",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.9.1",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "sse-channel": "^2.0.2"
+  },
+  "devDependencies": {
+    "@angular/language-service": "~8.2.13",
+    "@bazel/ibazel": "^0.10.3",
+    "@bazel/typescript": "0.39.1",
+    "@types/node": "~8.9.4",
+    "@types/jasmine": "~3.3.8",
+    "@types/jasminewd2": "~2.0.3",
+    "codelyzer": "^5.0.0",
+    "jasmine-core": "~3.4.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.15.0",
+    "typescript": "~3.5.3",
+    "@types/compression": "0.0.33",
+    "@types/express": "^4.0.34"
+  }
+}

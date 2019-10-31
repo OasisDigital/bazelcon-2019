@@ -1,0 +1,81 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile app",
+      "command": "./node_modules/.bin/tsc",
+      "type": "shell",
+      "args": [
+        "--project",
+        "tsconfig.app.json",
+        "--noEmit"
+      ],
+      "presentation": {
+        "echo": false,
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "isBackground": true,
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Compile spec",
+      "command": "./node_modules/.bin/tsc",
+      "type": "shell",
+      "args": [
+        "--project",
+        "tsconfig.spec.json",
+        "--noEmit"
+      ],
+      "presentation": {
+        "echo": false,
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "isBackground": true,
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Compile e2e",
+      "command": "./node_modules/.bin/tsc",
+      "type": "shell",
+      "args": [
+        "--project",
+        "tsconfig.e2e.json",
+        "--noEmit"
+      ],
+      "presentation": {
+        "echo": false,
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "isBackground": true,
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Lint",
+      "type": "npm",
+      "script": "lint",
+      "presentation": {
+        "echo": false,
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "isBackground": true,
+      "problemMatcher": "$tslint5"
+    },
+    {
+      "label": "Build",
+      "dependsOn": [
+        "Compile app",
+        "Compile spec",
+        "Compile e2e",
+        "Lint"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

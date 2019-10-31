@@ -1,0 +1,19 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+
+java_test(
+    name = "pass",
+    srcs = ["TestHello.java"],
+    test_class = "com.example.myproject.TestHello",
+    deps = [
+        "//app-one/src/main/java/com/example/myproject:hello-lib",
+        "@maven//:junit_junit",
+    ],
+)
+
+# java_library(
+#     name = "java_test_deps",
+#     exports = [
+#         "@maven//:junit_junit",
+#         "@maven//:org_hamcrest_hamcrest_library",
+#     ],
+# )

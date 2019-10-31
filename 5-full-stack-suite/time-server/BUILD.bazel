@@ -1,0 +1,15 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "time-server-lib",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = ["@maven//:com_sparkjava_spark_core"],
+)
+
+java_binary(
+    name = "time-server",
+    main_class = "com.oasisdigital.myproject.Server",
+    runtime_deps = [":time-server-lib"],
+)

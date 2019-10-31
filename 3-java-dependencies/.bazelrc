@@ -1,0 +1,19 @@
+# Configure Bazel Java rules to use a Bazel-managed JDK.
+# (In the future, that may become the default.)
+
+build --javabase=//:jdk
+build --host_javabase=//:jdk
+build --java_toolchain=@bazel_tools//tools/jdk:toolchain_hostjdk8
+build --host_java_toolchain=@bazel_tools//tools/jdk:toolchain_hostjdk8
+
+# An even simpler example would not configure any extra caching; but
+# to speed up the CI used for these examples, it’s worth this extra bit
+# of configuration.
+
+# --repository_cache for fetched externals
+# --disk_cache for build artifacts
+
+build --repository_cache=~/.cache/bazel-repo
+fetch --repository_cache=~/.cache/bazel-repo
+query --repository_cache=~/.cache/bazel-repo
+build --disk_cache=~/.cache/bazel-disk

@@ -1,0 +1,32 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: l.gcr.io/google/bazel:latest
+    steps:
+      - checkout
+
+      - run:
+          command: |
+            cd 1-up-and-running
+            ./exercise.sh
+
+      - run:
+          command: |
+            cd 2-java-tooling
+            ./exercise.sh
+
+      - run:
+          command: |
+            cd 3-java-dependencies
+            ./exercise.sh
+
+      - run:
+          command: |
+            cd 4-multi-language
+            ./exercise.sh
+
+      - run:
+          command: |
+            cd 5-full-stack-suite
+            ./exercise.sh

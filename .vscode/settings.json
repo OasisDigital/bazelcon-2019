@@ -1,0 +1,15 @@
+{
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true,
+    "**/bazel-*": true
+  },
+  "rewrap.wrappingColumn": 70,
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

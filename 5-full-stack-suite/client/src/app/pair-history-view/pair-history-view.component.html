@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading">{{ pair }}</div>
+  <div class="panel-body">
+    <table class="table table-condensed">
+      <tr>
+        <th>Time</th>
+        <th>Bid</th>
+      </tr>
+      <tr *ngFor="let q of latestQuotes">
+        <td>{{ q.timestamp | date:'mediumTime' }}</td>
+        <td>{{ q.bid }}</td>
+      </tr>
+    </table>
+
+    <app-pair-history-chart
+      width="300"
+      height="180"
+      [quotes]="latestQuotes"
+      [pair]="pair"></app-pair-history-chart>
+  </div>
+</div>

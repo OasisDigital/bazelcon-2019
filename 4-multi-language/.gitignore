@@ -1,0 +1,10 @@
+*.log
+.idea
+.DS_Store
+.Trashes
+*.swp
+
+# based on the name of the directory bazel is cloned into.
+/bazel-*
+# Ignore outputs generated during Bazel bootstrapping.
+/output/
