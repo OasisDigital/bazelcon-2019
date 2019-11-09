@@ -1,4 +1,4 @@
-workspace(name = "up_and_running")
+workspace(name = "java_tooling")
 
 load(
     "@bazel_tools//tools/build_defs/repo:http.bzl",
@@ -44,6 +44,16 @@ http_archive(
     strip_prefix = "zulu8.38.0.13-ca-jdk8.0.212-macosx_x64",
     urls = [
         "https://cdn.azul.com/zulu/bin/zulu8.38.0.13-ca-jdk8.0.212-macosx_x64.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "jdk8_windows",
+    build_file = "@local_jdk//:BUILD.bazel",
+    sha256 = "f5367fc29485252e91d3d1d28b069277b7133dfa2e104fc181af4373267d3a82",
+    strip_prefix = "zulu8.38.0.13-ca-jdk8.0.212-win_x64",
+    urls = [
+        "https://cdn.azul.com/zulu/bin/zulu8.38.0.13-ca-jdk8.0.212-win_x64.zip",
     ],
 )
 

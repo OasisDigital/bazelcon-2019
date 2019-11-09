@@ -1,6 +1,7 @@
-load("@rules_java//java:defs.bzl", "java_binary", "java_library")
-
 package(default_visibility = ["//visibility:public"])
+
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+load("@bazel_common//tools/maven:pom_file.bzl", "pom_file")
 
 java_library(
     name = "time-server-lib",
@@ -12,4 +13,12 @@ java_binary(
     name = "time-server",
     main_class = "com.oasisdigital.myproject.Server",
     runtime_deps = [":time-server-lib"],
+)
+
+pom_file(
+    name = "my_library_pom",
+    targets = [
+        "//app-one/src/main/java/com/example/myproject:hello-lib",
+    ],
+    template_file = "pom_template.xml",
 )

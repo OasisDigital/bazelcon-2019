@@ -41,7 +41,17 @@ http_archive(
     ],
 )
 
-# Offical Bazel tools to get Maven repo dependencies; there are other
+http_archive(
+    name = "jdk8_windows",
+    build_file = "@local_jdk//:BUILD.bazel",
+    sha256 = "f5367fc29485252e91d3d1d28b069277b7133dfa2e104fc181af4373267d3a82",
+    strip_prefix = "zulu8.38.0.13-ca-jdk8.0.212-win_x64",
+    urls = [
+        "https://cdn.azul.com/zulu/bin/zulu8.38.0.13-ca-jdk8.0.212-win_x64.zip",
+    ],
+)
+
+# Official Bazel tools to get Maven repo dependencies; there are other
 # unofficial tools also.
 
 RULES_JVM_EXTERNAL_TAG = "2.10"
@@ -81,14 +91,10 @@ pinned_maven_install()
 
 # Javascript / Typescript tooling
 
-RULES_NODEJS_VERSION = "0.34.0"
-
-RULES_NODEJS_SHA256 = "7c4a690268be97c96f04d505224ec4cb1ae53c2c2b68be495c9bd2634296a5cd"
-
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = RULES_NODEJS_SHA256,
-    url = "https://github.com/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+    sha256 = "9901bc17138a79135048fb0c107ee7a56e91815ec6594c08cb9a17b80276d62b",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.40.0/rules_nodejs-0.40.0.tar.gz"],
 )
 
 # Rules for compiling sass
@@ -132,3 +138,22 @@ browser_repositories()
 load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 
 ts_setup_workspace()
+
+# Needed the POM file generator:
+
+http_archive(
+    name = "bazel_common",
+    sha256 = "d8c9586b24ce4a5513d972668f94b62eb7d705b92405d4bc102131f294751f1d",
+    strip_prefix = "bazel-common-413b433b91f26dbe39cdbc20f742ad6555dd1e27",
+    url = "https://github.com/google/bazel-common/archive/413b433b91f26dbe39cdbc20f742ad6555dd1e27.zip",
+)
+
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "97e70364e9249702246c0e9444bccdc4b847bed1eb03c5a3ece4f83dfe6abc44",
+    url = "https://github.com/bazelbuild/bazel-skylib/releases/download/1.0.2/bazel-skylib-1.0.2.tar.gz",
+)
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()

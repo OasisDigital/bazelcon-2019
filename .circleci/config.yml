@@ -1,11 +1,46 @@
 version: 2.1
+
+orbs:
+  win: circleci/windows@1.0.0
+
 jobs:
-  build:
+  bazel_linux:
     docker:
       - image: l.gcr.io/google/bazel:latest
+    resource_class: large
     steps:
       - checkout
 
+      - run:
+          command: |
+            cd 1-up-and-running
+            bazel version
+            ./exercise.sh
+
+      - run:
+          command: |
+            cd 2-java-tooling
+            ./exercise.sh
+
+      - run:
+          command: |
+            cd 3-java-dependencies
+            ./exercise.sh
+
+      - run:
+          command: |
+            cd 4-multi-language
+            ./exercise.sh
+
+  bazel_windows:
+    executor:
+      name: win/vs2019
+      shell: bash.exe
+    steps:
+      - checkout
+      - run:
+          command: |
+            curl -sSL https://github.com/bazelbuild/bazel/releases/download/1.2.1/bazel-1.2.1-windows-x86_64.exe >/c/Go/bin/bazel
       - run:
           command: |
             cd 1-up-and-running
@@ -26,7 +61,9 @@ jobs:
             cd 4-multi-language
             ./exercise.sh
 
-      - run:
-          command: |
-            cd 5-full-stack-suite
-            ./exercise.sh
+workflows:
+  version: 2
+  both_platforms:
+    jobs:
+      - bazel_linux
+      - bazel_windows

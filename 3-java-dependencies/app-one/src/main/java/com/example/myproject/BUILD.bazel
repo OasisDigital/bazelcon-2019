@@ -6,6 +6,7 @@ java_binary(
     name = "hello-world",
     srcs = ["Greeter.java"],
     main_class = "com.example.myproject.Greeter",
+    deps = ["@bazel_tools//tools/java/runfiles"],
 )
 
 java_binary(
@@ -18,4 +19,5 @@ java_library(
     name = "hello-lib",
     srcs = ["Greeter.java"],
     data = ["//app-one/src/main/resources:greeting"],
+    deps = ["@bazel_tools//tools/java/runfiles"],
 )

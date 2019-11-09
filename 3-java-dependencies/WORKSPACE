@@ -1,4 +1,4 @@
-workspace(name = "dependencies")
+workspace(name = "java_dependencies")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
@@ -38,7 +38,17 @@ http_archive(
     ],
 )
 
-# Offical Bazel tools to get Maven repo dependencies; there are other
+http_archive(
+    name = "jdk8_windows",
+    build_file = "@local_jdk//:BUILD.bazel",
+    sha256 = "f5367fc29485252e91d3d1d28b069277b7133dfa2e104fc181af4373267d3a82",
+    strip_prefix = "zulu8.38.0.13-ca-jdk8.0.212-win_x64",
+    urls = [
+        "https://cdn.azul.com/zulu/bin/zulu8.38.0.13-ca-jdk8.0.212-win_x64.zip",
+    ],
+)
+
+# Official Bazel tools to get Maven repo dependencies; there are other
 # unofficial tools also.
 
 RULES_JVM_EXTERNAL_TAG = "2.10"

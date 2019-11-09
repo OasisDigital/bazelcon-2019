@@ -10,6 +10,9 @@
     "**/.factorypath": true,
     "**/bazel-*": true
   },
+  "java.format.settings.url": ".vscode/java-formatting.xml",
+  "java.format.settings.profile": "Narrow",
   "rewrap.wrappingColumn": 70,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": ["Bazel", "Runfiles", "grpc", "mattn"]
 }

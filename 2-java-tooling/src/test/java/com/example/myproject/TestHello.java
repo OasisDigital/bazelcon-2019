@@ -21,22 +21,17 @@ public class TestHello {
 
   @Test
   public void testNoArgument() throws Exception {
-    // ByteArrayOutputStream out = new ByteArrayOutputStream();
-    // Greeter.out = new PrintStream(out);
-    // Greeter.main();
-    // assertEquals("Hello world\n", new String(out.toByteArray(),
-    // StandardCharsets.UTF_8));
-    assertEquals(1, 1);
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    Greeter.out = new PrintStream(out);
+    Greeter.main();
+    assertEquals("Heyo world" + System.lineSeparator(), new String(out.toByteArray(),StandardCharsets.UTF_8));
   }
 
   @Test
   public void testWithArgument() throws Exception {
-    // ByteArrayOutputStream out = new ByteArrayOutputStream();
-    // Greeter.out = new PrintStream(out);
-    // Greeter.main("toto");
-    // assertEquals("Hello toto\n", new String(out.toByteArray(),
-    // StandardCharsets.UTF_8));
-    assertEquals(1, 1);
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    Greeter.out = new PrintStream(out);
+    Greeter.main("toto");
+    assertEquals("Heyo toto" + System.lineSeparator(), new String(out.toByteArray(), StandardCharsets.UTF_8));
   }
-
 }

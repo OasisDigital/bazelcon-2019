@@ -9,6 +9,7 @@ alias(
             "@bazel_tools//src/conditions:darwin": "@jdk8_macos//:jdk",
             "@bazel_tools//src/conditions:darwin_x86_64": "@jdk8_macos//:jdk",
             "@bazel_tools//src/conditions:linux_x86_64": "@jdk8_linux//:jdk",
+            "@bazel_tools//src/conditions:windows": "@jdk8_windows//:jdk",
         },
         no_match_error = "Could not find a JDK for host execution environment, please explicitly" +
                          " provide one using `--host_javabase.`",
@@ -20,6 +21,7 @@ java_binary(
     name = "hello-world",
     srcs = ["src/main/java/com/example/myproject/Greeter.java"],
     main_class = "com.example.myproject.Greeter",
+    deps = ["@bazel_tools//tools/java/runfiles"],
 )
 
 java_binary(
@@ -32,6 +34,7 @@ java_library(
     name = "hello-lib",
     srcs = ["src/main/java/com/example/myproject/Greeter.java"],
     data = [":greeting"],
+    deps = ["@bazel_tools//tools/java/runfiles"],
 )
 
 filegroup(
@@ -41,6 +44,7 @@ filegroup(
 
 java_test(
     name = "pass",
+    timeout = "short",
     srcs = ["src/test/java/com/example/myproject/TestHello.java"],
     test_class = "com.example.myproject.TestHello",
     deps = [

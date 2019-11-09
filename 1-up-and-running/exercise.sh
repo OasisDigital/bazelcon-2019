@@ -3,4 +3,6 @@
 set -e
 
 bazel build ...
-# bazel :hello
+
+# to run the server:
+# bazel run //groceries

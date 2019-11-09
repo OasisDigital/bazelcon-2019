@@ -1,5 +1,6 @@
 *.log
 .idea
+.ijwb
 .DS_Store
 .Trashes
 *.swp

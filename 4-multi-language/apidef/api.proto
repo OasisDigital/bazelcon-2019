@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// Configure Java code gen
+
+option java_multiple_files = true;
+option java_package = "com.oasisdigital.grocery.api";
+option java_outer_classname = "ApiProto";
+
+// Configure Go code gen
+
+option go_package = "grocery/api";
+
+// A highly limited, far-short-of-MVP grocery list API:
+
+service GroceryList {
+  rpc AddEntry(Entry) returns (Empty) {}
+  rpc GetList(Empty) returns (List) {}
+}
+
+message Entry {
+  string description = 1;
+  int64 qty = 2;
+}
+
+message List {
+  repeated Entry entry = 1;
+  string occasion = 2;
+}
+
+message Empty {}

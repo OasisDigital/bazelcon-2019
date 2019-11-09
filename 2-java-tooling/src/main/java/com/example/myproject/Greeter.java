@@ -1,10 +1,12 @@
 package com.example.myproject;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import com.google.devtools.build.runfiles.Runfiles;
 
 /**
  * Prints a greeting which can be customized by building with data and/or
@@ -13,25 +15,22 @@ import java.util.Scanner;
 public class Greeter {
   static PrintStream out = System.out;
 
-  public static String getRunfiles() {
-    String path = System.getenv("JAVA_RUNFILES");
-    if (path == null) {
-      path = System.getenv("TEST_SRCDIR");
+  public static String readFile(String fn) throws FileNotFoundException {
+    Scanner s = new Scanner(new File(fn));
+    try {
+      return s.hasNextLine() ? s.nextLine() : "";
+    } finally {
+      s.close();
     }
-    return path;
-  }
-
-  public static String convertStreamToString(InputStream is) throws Exception {
-    Scanner s = new Scanner(is).useDelimiter("\n");
-    return s.hasNext() ? s.next() : "";
   }
 
   public void hello(String obj) throws Exception {
     String greeting = "Hello";
     try {
-      String greetFile = getRunfiles() + "/simple_case/src/main/resources/greeting.txt";
-      // System.out.println("greetFile: " + greetFile);
-      greeting = convertStreamToString(new FileInputStream(greetFile));
+      Runfiles r = Runfiles.create();
+      greeting = readFile(r.rlocation("java_tooling/src/main/resources/greeting.txt"));
+    } catch (NullPointerException e) {
+      // use default.
     } catch (FileNotFoundException e) {
       // use default.
     }

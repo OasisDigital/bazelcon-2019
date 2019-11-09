@@ -1,0 +1,21 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
+package(default_visibility = ["//visibility:public"])
+
+java_binary(
+    name = "grocery",
+    main_class = "com.oasisdigital.grocery.GroceryListServer",
+    runtime_deps = [":grocery-lib"],
+)
+
+java_library(
+    name = "grocery-lib",
+    srcs = ["GroceryListServer.java"],
+    deps = [
+        "//apidef:api_java_proto",
+        "//apidef:api_java_proto_lib",
+        "@io_grpc_grpc_java//core",
+        "@io_grpc_grpc_java//netty",
+        "@io_grpc_grpc_java//stub",
+    ],
+)

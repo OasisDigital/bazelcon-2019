@@ -32,5 +32,3 @@ test --test_output=errors
 # This allows us to avoid installing a second copy of node_modules
 
 common --experimental_allow_incremental_repository_updates
-
-common --incompatible_no_transitive_loads
