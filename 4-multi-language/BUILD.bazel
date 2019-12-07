@@ -22,3 +22,8 @@ alias(
     name = "service",
     actual = "//service/src/main/java/com/oasisdigital/grocery:grocery",
 )
+
+alias(
+    name = "service-deploy",
+    actual = "//service/src/main/java/com/oasisdigital/grocery:grocery_deploy.jar",
+)

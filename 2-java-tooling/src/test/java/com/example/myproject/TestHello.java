@@ -2,6 +2,7 @@ package com.example.myproject;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -9,29 +10,46 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Tests different numbers of arguments to main().
- *
- * <p>
- * With an empty args array, {@link Greeter} should print "Hello world". If
- * there are one or more args, {@link Greeter} should print "Hello
- * &lt;arg[0]&gt;".
- * </p>
+ * Simple test, just to see it run.
  */
 public class TestHello {
 
-  @Test
-  public void testNoArgument() throws Exception {
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
+  ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+  @Before
+  public void setUp() {
     Greeter.out = new PrintStream(out);
-    Greeter.main();
-    assertEquals("Heyo world" + System.lineSeparator(), new String(out.toByteArray(),StandardCharsets.UTF_8));
+  }
+
+  private String mainOutput() {
+    return new String(out.toByteArray(), StandardCharsets.UTF_8);
   }
 
   @Test
-  public void testWithArgument() throws Exception {
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    Greeter.out = new PrintStream(out);
-    Greeter.main("toto");
-    assertEquals("Heyo toto" + System.lineSeparator(), new String(out.toByteArray(), StandardCharsets.UTF_8));
+  public void testNoArgument() throws Exception {
+    Greeter.main();
+    assertEquals("Hello worlds" + System.lineSeparator(),
+        this.mainOutput());
+  }
+
+  @Test
+  public void testOneWorld() throws Exception {
+    Greeter.main("world");
+    assertEquals("Hello world" + System.lineSeparator(),
+        this.mainOutput());
+  }
+
+  @Test
+  public void testTwoWorlds() throws Exception {
+    Greeter.main("world", "world");
+    assertEquals("Hello worlds" + System.lineSeparator(),
+        this.mainOutput());
+  }
+
+  @Test
+  public void testWrongWorlds() throws Exception {
+    Greeter.main("what ever");
+    assertEquals("Hello worlds" + System.lineSeparator(),
+        this.mainOutput());
   }
 }

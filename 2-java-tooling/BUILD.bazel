@@ -14,18 +14,18 @@ alias(
         no_match_error = "Could not find a JDK for host execution environment, please explicitly" +
                          " provide one using `--host_javabase.`",
     ),
-    visibility = ["//visibility:public"],
 )
 
 java_binary(
     name = "hello-world",
-    srcs = ["src/main/java/com/example/myproject/Greeter.java"],
+    args = ["world"],
     main_class = "com.example.myproject.Greeter",
-    deps = ["@bazel_tools//tools/java/runfiles"],
+    runtime_deps = [":hello-lib"],
 )
 
 java_binary(
-    name = "hello-data",
+    name = "hello-worlds",
+    args = ["world", "world", "world"],
     main_class = "com.example.myproject.Greeter",
     runtime_deps = [":hello-lib"],
 )
@@ -33,22 +33,17 @@ java_binary(
 java_library(
     name = "hello-lib",
     srcs = ["src/main/java/com/example/myproject/Greeter.java"],
-    data = [":greeting"],
-    deps = ["@bazel_tools//tools/java/runfiles"],
-)
-
-filegroup(
-    name = "greeting",
-    srcs = ["src/main/resources/greeting.txt"],
+    deps = [
+        "@guava//jar",
+    ],
 )
 
 java_test(
-    name = "pass",
+    name = "greeting-output",
     timeout = "short",
     srcs = ["src/test/java/com/example/myproject/TestHello.java"],
     test_class = "com.example.myproject.TestHello",
     deps = [
         ":hello-lib",
-        "@junit//jar",
     ],
 )

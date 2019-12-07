@@ -18,7 +18,7 @@ java_binary(
 pom_file(
     name = "my_library_pom",
     targets = [
-        "//app-one/src/main/java/com/example/myproject:hello-lib",
+        ":time-server",
     ],
     template_file = "pom_template.xml",
 )

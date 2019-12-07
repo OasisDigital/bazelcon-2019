@@ -1,16 +1,17 @@
 package main
 
 import (
-  "context"
-  "fmt"
-  "github.com/mattn/go-slim"
-  "log"
-  "net/http"
-  "strings"
+	"context"
+	"fmt"
+	"log"
+	"net/http"
+	"strings"
 
-  pb "proto/grocery/api"
+	"github.com/mattn/go-slim"
 
-  "google.golang.org/grpc"
+	pb "proto/grocery/api"
+
+	"google.golang.org/grpc"
 )
 
 var (
@@ -34,7 +35,7 @@ html lang="en"
     meta charset="UTF-8"
     title
   body
-    h1 = result.GetOccasion()  
+    h1 = result.GetOccasion()
     ul
     - for entry in result.GetEntry()
       li #{entry.Qty} #{entry.Description}
@@ -58,7 +59,7 @@ func HelloServer(w http.ResponseWriter, r *http.Request) {
 	log.Printf("data: %v", result)
 
 	// Use the template to format the data
-	err = compiledTemplate.Execute(w,  map[string]interface{}{"result": result,})
+	err = compiledTemplate.Execute(w, map[string]interface{}{"result": result})
 	if err != nil {
 		log.Fatalf("Template execution failed: %v", err)
 	}

@@ -14,7 +14,8 @@ import com.google.devtools.build.runfiles.Runfiles;
 public class Greeter {
   static PrintStream out = System.out;
 
-  public static String readFile(String fn) throws FileNotFoundException {
+  public static String readFile(String fn)
+      throws FileNotFoundException {
     Scanner s = new Scanner(new File(fn));
     try {
       return s.hasNextLine() ? s.nextLine() : "";
@@ -23,22 +24,23 @@ public class Greeter {
     }
   }
 
-  public void hello(String obj) throws Exception {
+  public void greet(String subject) throws Exception {
     String greeting = "Hello";
     try {
       Runfiles r = Runfiles.create();
-      greeting = readFile(r.rlocation("java_dependencies/app-one/src/main/resources/greeting.txt"));
+      greeting = readFile(r.rlocation(
+          "java_dependencies/app-one/src/main/resources/greeting.txt"));
     } catch (NullPointerException e) {
       // use default.
     } catch (FileNotFoundException e) {
       // use default.
     }
-    out.println(greeting + " " + obj);
+    out.println(greeting + " " + subject);
   }
 
   public static void main(String... args) throws Exception {
     Greeter g = new Greeter();
-    String obj = args.length > 0 ? args[0] : "world";
-    g.hello(obj);
+    String subject = args.length > 0 ? args[0] : "world";
+    g.greet(subject);
   }
 };

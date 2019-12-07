@@ -6,7 +6,7 @@ go_library(
     importpath = "grocery/api",
     visibility = ["//visibility:private"],
     deps = [
-        "//apidef:api_go_proto",
+        "//apidef:api_proto_go",
         "@com_github_golang_protobuf//jsonpb:go_default_library_gen",
         "@com_github_mattn_go_slim//:go_default_library",
         "@org_golang_google_grpc//:go_default_library",

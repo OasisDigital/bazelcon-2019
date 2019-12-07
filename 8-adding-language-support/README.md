@@ -1,3 +1,3 @@
 # WORK IN PROGRESS
 
-This example is not yet ready.
+(Unused, not part of Bazelcon 2019 session.)

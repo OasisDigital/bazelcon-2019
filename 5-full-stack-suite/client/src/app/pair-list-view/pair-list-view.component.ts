@@ -4,8 +4,7 @@ import { FxQuote } from '../fx-quote';
 
 @Component({
   selector: 'app-pair-list-view',
-  templateUrl: './pair-list-view.component.html',
-  styleUrls: ['./pair-list-view.component.css']
+  templateUrl: './pair-list-view.component.html'
 })
 export class PairListViewComponent {
   @Input() list: FxQuote[];

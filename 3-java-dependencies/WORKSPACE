@@ -51,9 +51,9 @@ http_archive(
 # Official Bazel tools to get Maven repo dependencies; there are other
 # unofficial tools also.
 
-RULES_JVM_EXTERNAL_TAG = "2.10"
+RULES_JVM_EXTERNAL_TAG = "3.0"
 
-RULES_JVM_EXTERNAL_SHA = "1bbf2e48d07686707dd85357e9a94da775e1dbd7c464272b3664283c9c716d26"
+RULES_JVM_EXTERNAL_SHA = "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a"
 
 http_archive(
     name = "rules_jvm_external",
@@ -84,3 +84,7 @@ pinned_maven_install()
 
 # bazel run @maven//:pin
 # bazel run @unpinned_maven//:pin
+
+# <groupId>com.google.guava</groupId>
+# <artifactId>guava</artifactId>
+# <version>28.1-jre</version>

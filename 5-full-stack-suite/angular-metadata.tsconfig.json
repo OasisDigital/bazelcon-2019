@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2015"],
+    "experimentalDecorators": true,
+    "types": [],
+    "module": "amd",
+    "moduleResolution": "node"
+  },
+  "angularCompilerOptions": {
+    "enableSummariesForJit": true
+  },
+  "include": ["node_modules/@angular/**/*"],
+  "exclude": [
+    "node_modules/@angular/common/upgrade*",
+    "node_modules/@angular/router/upgrade*",
+    "node_modules/@angular/bazel/**",
+    "node_modules/@angular/compiler-cli/**",
+    "node_modules/@angular/**/testing/**"
+  ]
+}

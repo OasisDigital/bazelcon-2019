@@ -1,0 +1,4 @@
+alias(
+    name = "client",
+    actual = "//client/src:devserver",
+)

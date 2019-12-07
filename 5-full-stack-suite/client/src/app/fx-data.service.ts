@@ -12,6 +12,8 @@ export class FxDataService {
   fxData: Observable<FxQuote>;
 
   constructor(sse: SseService) {
-    this.fxData = sse.observe<FxQuote>('//localhost:8005/lowfreq').pipe(share());
+    this.fxData = sse
+      .observe<FxQuote>('//localhost:8005/highfreq')
+      .pipe(share());
   }
 }

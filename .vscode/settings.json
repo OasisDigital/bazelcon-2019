@@ -1,18 +1,16 @@
 {
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "editor.formatOnSave": true,
-  "editor.detectIndentation": false,
-  "files.exclude": {
-    "**/.classpath": true,
-    "**/.project": true,
-    "**/.settings": true,
-    "**/.factorypath": true,
-    "**/bazel-*": true
-  },
-  "java.format.settings.url": ".vscode/java-formatting.xml",
-  "java.format.settings.profile": "Narrow",
-  "rewrap.wrappingColumn": 70,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Bazel", "Runfiles", "grpc", "mattn"]
+    "editor.formatOnSave": true,
+    "editor.detectIndentation": false,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "**/bazel-*": true
+    },
+    "java.format.settings.url": ".vscode/java-formatting.xml",
+    "java.format.settings.profile": "Narrow",
+    "rewrap.wrappingColumn": 70,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "cSpell.words": ["Bazel", "Runfiles", "grpc", "mattn"]
 }

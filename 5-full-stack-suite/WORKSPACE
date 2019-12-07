@@ -54,9 +54,9 @@ http_archive(
 # Official Bazel tools to get Maven repo dependencies; there are other
 # unofficial tools also.
 
-RULES_JVM_EXTERNAL_TAG = "2.10"
+RULES_JVM_EXTERNAL_TAG = "3.0"
 
-RULES_JVM_EXTERNAL_SHA = "1bbf2e48d07686707dd85357e9a94da775e1dbd7c464272b3664283c9c716d26"
+RULES_JVM_EXTERNAL_SHA = "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a"
 
 http_archive(
     name = "rules_jvm_external",
@@ -70,7 +70,6 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 maven_install(
     artifacts = [
         "com.sparkjava:spark-core:2.8.0",
-        "junit:junit:4.12",
     ],
     maven_install_json = "//:maven_install.json",
     repositories = [
@@ -86,40 +85,25 @@ load("@maven//:defs.bzl", "pinned_maven_install")
 
 pinned_maven_install()
 
-# bazel run @maven//:pin
-# bazel run @unpinned_maven//:pin
-
 # Javascript / Typescript tooling
 
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "9901bc17138a79135048fb0c107ee7a56e91815ec6594c08cb9a17b80276d62b",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.40.0/rules_nodejs-0.40.0.tar.gz"],
-)
-
-# Rules for compiling sass
-RULES_SASS_VERSION = "86ca977cf2a8ed481859f83a286e164d07335116"
-
-RULES_SASS_SHA256 = "4f05239080175a3f4efa8982d2b7775892d656bb47e8cf56914d5f9441fb5ea6"
-
-http_archive(
-    name = "io_bazel_rules_sass",
-    sha256 = RULES_SASS_SHA256,
-    strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
-    url = "https://github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+    sha256 = "a54b2511d6dae42c1f7cdaeb08144ee2808193a088004fc3b464a04583d5aa2e",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.42.3/rules_nodejs-0.42.3.tar.gz"],
 )
 
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
 
 node_repositories(
-    node_version = "10.16.0",
-    package_json = ["//:package.json"],
+    # name = "nodejs",  # Most repository rules require a name, a few don't.
+    node_version = "12.13.0",
 )
 
 yarn_install(
     name = "npm",
     package_json = "//:package.json",
-    symlink_node_modules = False,
+    symlink_node_modules = True,  # Worthy of discussion!
     yarn_lock = "//:yarn.lock",
 )
 
@@ -127,17 +111,23 @@ load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
 
 install_bazel_dependencies()
 
+# Load npm_bazel_karma dependencies
+load("@npm_bazel_karma//:package.bzl", "npm_bazel_karma_dependencies")
+
+npm_bazel_karma_dependencies()
+
+# Setup the rules_webtesting toolchain
+
 load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
 
 web_test_repositories()
 
-load("@npm_bazel_karma//:browser_repositories.bzl", "browser_repositories")
+load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.2.bzl", "browser_repositories")
 
-browser_repositories()
-
-load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
-
-ts_setup_workspace()
+browser_repositories(
+    chromium = True,
+    firefox = True,
+)
 
 # Needed the POM file generator:
 

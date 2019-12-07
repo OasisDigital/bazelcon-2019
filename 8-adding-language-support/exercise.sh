@@ -4,5 +4,5 @@ set -e
 
 exit
 
-bazel build ...
-# bazel test ... --test_verbose_timeout_warnings
+bazel build '...'
+# bazel test '...' --test_verbose_timeout_warnings

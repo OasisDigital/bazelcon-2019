@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  * Prints a greeting which can be customized by building with data and/or
- * passing in command- line arguments.
+ * passing in command-line arguments.
  */
 public class GroceryListServer {
   public static void main(String[] args) {
@@ -40,7 +40,7 @@ class Impl extends GroceryListGrpc.GroceryListImplBase {
         .setQty(6).build();
     Entry bananas = Entry.newBuilder().setDescription("Bananas")
         .setQty(12).build();
-    Entry basil = Entry.newBuilder().setDescription("Bazel")
+    Entry basil = Entry.newBuilder().setDescription("Basil")
         .setQty(16).build();
 
     List l = List.newBuilder().addEntry(apples).addEntry(bananas)

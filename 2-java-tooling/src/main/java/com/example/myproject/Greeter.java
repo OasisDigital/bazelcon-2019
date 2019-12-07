@@ -1,45 +1,30 @@
 package com.example.myproject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
-import com.google.devtools.build.runfiles.Runfiles;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
 
 /**
- * Prints a greeting which can be customized by building with data and/or
- * passing in command- line arguments.
+ * Prints a greeting based on how many worlds were mentioned in the command line
+ * args.
  */
 public class Greeter {
   static PrintStream out = System.out;
 
-  public static String readFile(String fn) throws FileNotFoundException {
-    Scanner s = new Scanner(new File(fn));
-    try {
-      return s.hasNextLine() ? s.nextLine() : "";
-    } finally {
-      s.close();
-    }
-  }
-
-  public void hello(String obj) throws Exception {
+  public void greet(String subject) throws Exception {
     String greeting = "Hello";
-    try {
-      Runfiles r = Runfiles.create();
-      greeting = readFile(r.rlocation("java_tooling/src/main/resources/greeting.txt"));
-    } catch (NullPointerException e) {
-      // use default.
-    } catch (FileNotFoundException e) {
-      // use default.
-    }
-    out.println(greeting + " " + obj);
+    out.println(greeting + " " + subject);
   }
 
   public static void main(String... args) throws Exception {
+    Multiset<String> myMultiset = HashMultiset.create();
+    for (String arg : args) {
+      myMultiset.add(arg);
+    }
     Greeter g = new Greeter();
-    String obj = args.length > 0 ? args[0] : "world";
-    g.hello(obj);
+    String subject = myMultiset.count("world") == 1 ? "world"
+        : "worlds";
+    g.greet(subject);
   }
 };

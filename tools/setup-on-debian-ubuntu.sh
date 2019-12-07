@@ -1,8 +1,14 @@
 #!/bin/bash
 
+# Oasis Digital, https://oasisdigital.com
+# Kyle Cordes, kyle.cordes@oasisdigital.com
+
 # WARNING - this is a rough initial script to set up a Linux machine for use with Bazel.
 # Barely tested. Don't expect this to do anything useful for you, unless you understand
 # each step.
+
+# Moreover, the "right" way to install Bazel for each platform and sitation is evolving
+# in late 2019 as I write this script.
 
 set -e
 
@@ -19,7 +25,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 sudo apt update
 sudo apt install -y apt-transport-https
-sudo apt install -y git yarn nodejs openjdk-11-jdk tig htop parallel pkg-config zip g++ zlib1g-dev unzip python3
+sudo apt install -y git yarn nodejs openjdk-11-jdk tig htop parallel pkg-config zip g++ zlib1g-dev unzip python3 graphviz
 
 # Consider the Bazel installer, to get Bash completion running easily.
 # curl -sSL https://github.com/bazelbuild/bazel/releases/download/1.1.0/bazel-1.1.0-installer-linux-x86_64.sh >bazel_install.sh

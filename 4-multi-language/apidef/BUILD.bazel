@@ -11,19 +11,31 @@ proto_library(
 )
 
 go_proto_library(
-    name = "api_go_proto",
+    name = "api_proto_go",
     compilers = ["@io_bazel_rules_go//proto:go_grpc"],
     importpath = "proto/grocery/api",
     proto = ":api_proto",
 )
 
 java_proto_library(
-    name = "api_java_proto",
+    name = "api_proto_java",
     deps = [":api_proto"],
 )
 
 java_grpc_library(
-    name = "api_java_proto_lib",
+    name = "api_proto_java_lib",
     srcs = [":api_proto"],
-    deps = [":api_java_proto"],
+    deps = [":api_proto_java"],
 )
+
+# What if we repeated this structure often, across many projects?
+# Would we need to carefully maintain the naming pattern by hand
+# in each? No, let's use a macro.
+
+# load("//rules:acme_corporate_standards.bzl", "acme_grpc")
+
+# acme_grpc(
+#     name = "api_proto",
+#     srcs = ["api.proto"],
+#     go_import_path = "proto/grocery/api",
+# )

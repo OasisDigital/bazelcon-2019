@@ -61,7 +61,7 @@ http_archive(
 # more complex mechanisms later.
 
 http_jar(
-    name = "junit",
-    sha256 = "59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a",
-    url = "https://github.com/junit-team/junit4/releases/download/r4.12/junit-4.12.jar",
+    name = "guava",
+    sha256 = "30beb8b8527bd07c6e747e77f1a92122c2f29d57ce347461a4a55eb26e382da4",
+    url = "https://repo1.maven.org/maven2/com/google/guava/guava/28.1-jre/guava-28.1-jre.jar",
 )

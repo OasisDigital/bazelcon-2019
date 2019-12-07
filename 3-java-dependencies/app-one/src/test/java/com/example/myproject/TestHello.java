@@ -24,7 +24,7 @@ public class TestHello {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     Greeter.out = new PrintStream(out);
     Greeter.main();
-    assertEquals("Heyo world" + System.lineSeparator(), new String(out.toByteArray(), StandardCharsets.UTF_8));
+    assertEquals("Aloha world" + System.lineSeparator(), new String(out.toByteArray(), StandardCharsets.UTF_8));
   }
 
   @Test
@@ -32,7 +32,7 @@ public class TestHello {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     Greeter.out = new PrintStream(out);
     Greeter.main("toto");
-    assertEquals("Heyo toto" + System.lineSeparator(), new String(out.toByteArray(), StandardCharsets.UTF_8));
+    assertEquals("Aloha toto" + System.lineSeparator(), new String(out.toByteArray(), StandardCharsets.UTF_8));
   }
 
 }

@@ -4,8 +4,7 @@ import { FxQuote } from '../fx-quote';
 
 @Component({
   selector: 'app-pair-history-view',
-  templateUrl: './pair-history-view.component.html',
-  styleUrls: ['./pair-history-view.component.css']
+  templateUrl: './pair-history-view.component.html'
 })
 export class PairHistoryViewComponent {
   @Input() latestQuotes: FxQuote[];
