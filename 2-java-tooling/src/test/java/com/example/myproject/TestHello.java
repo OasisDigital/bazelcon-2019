@@ -10,7 +10,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Simple test, just to see it run.
+ * Test the Greeter's ability to say Hello
  */
 public class TestHello {
 
@@ -48,7 +48,7 @@ public class TestHello {
 
   @Test
   public void testWrongWorlds() throws Exception {
-    Greeter.main("what ever");
+    Greeter.main("what ever"); // 0 worlds
     assertEquals("Hello worlds" + System.lineSeparator(),
         this.mainOutput());
   }

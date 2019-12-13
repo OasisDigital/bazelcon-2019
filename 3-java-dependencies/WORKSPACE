@@ -80,7 +80,9 @@ maven_install(
 
 load("@maven//:defs.bzl", "pinned_maven_install")
 
-pinned_maven_install()
+pinned_maven_install(
+    # name = "maven",
+)
 
 # bazel run @maven//:pin
 # bazel run @unpinned_maven//:pin

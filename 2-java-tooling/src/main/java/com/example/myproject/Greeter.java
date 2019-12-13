@@ -18,13 +18,12 @@ public class Greeter {
   }
 
   public static void main(String... args) throws Exception {
-    Multiset<String> myMultiset = HashMultiset.create();
+    Multiset<String> words = HashMultiset.create();
     for (String arg : args) {
-      myMultiset.add(arg);
+      words.add(arg);
     }
-    Greeter g = new Greeter();
-    String subject = myMultiset.count("world") == 1 ? "world"
-        : "worlds";
-    g.greet(subject);
+    Greeter greeter = new Greeter();
+    String subject = words.count("world") == 1 ? "world" : "worlds";
+    greeter.greet(subject);
   }
 };

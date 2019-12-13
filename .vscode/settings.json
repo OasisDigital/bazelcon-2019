@@ -12,5 +12,11 @@
     "java.format.settings.profile": "Narrow",
     "rewrap.wrappingColumn": 70,
     "typescript.tsdk": "node_modules/typescript/lib",
-    "cSpell.words": ["Bazel", "Runfiles", "grpc", "mattn"]
+    "cSpell.words": [
+        "Bazel",
+        "Multiset",
+        "Runfiles",
+        "grpc",
+        "mattn"
+    ]
 }
